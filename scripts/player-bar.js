@@ -35,3 +35,17 @@ than or equal to the length of album.songs, and if it is, execute a return state
     player.playPause(nextSong);
   });
 }
+
+//Previous Button
+{
+  $('button#previous').on('click', function () {
+    if (player.playState !== 'playing') {return;}
+
+    const currentSongIndex = album.songs.indexOf(player.currentlyPlaying);
+    const previousSongIndex = currentSongIndex - 1;
+    if (previousSongIndex < 0) { return; }
+
+    const previousSong = album.songs[previousSongIndex];
+    player.playPause(previousSong);
+  });
+}
