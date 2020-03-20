@@ -1,8 +1,8 @@
 //Next Button
 {
-//Write a click handler that targets the #play-pause button and calls player.playPause().
+//Write a click handler that targets the #play-pause button and calls helper.playPauseAndUpdate().
   $('button#play-pause').on('click', function() {
-    player.playPause();
+    helper.playPauseAndUpdate();
 
 /*Setting the playState attribute on our play/pause button will cause the icons
 to show/hide appropriately. We can use the jQuery .attr() method to set the
@@ -24,7 +24,7 @@ and assign it to a variable, songIndex*/
 
 /*Create variable for the next song's index and call it nextSongIndex. Use nextSongIndex
 to get the next song in album.songs and assign that to a nextSong variable. Finally, call
-player.playPause() and pass it nextSong*/
+helper.playPauseAndUpdate() and pass it nextSong*/
     const nextSongIndex = currentSongIndex + 1;
 
 /*Fix that with an if statement that checks whether the value of nextSongIndex is greater
@@ -32,8 +32,13 @@ than or equal to the length of album.songs, and if it is, execute a return state
     if (nextSongIndex >= album.songs.length) { return; }
 
     const nextSong = album.songs[nextSongIndex];
-    player.playPause(nextSong);
+    helper.playPauseAndUpdate(nextSong);
   });
+
+//Changing songs playback position
+$('#volume-control input').on('input', function (event){
+  player.setVolume(event.target.value);
+});
 
 $('#time-control input').on('input', function (event) {
   player.skipTo(event.target.value);
@@ -44,8 +49,9 @@ $('#time-control input').on('input', function (event) {
     const currentTime = player.getTime();
     const duration = player.getDuration();
     const percent = (currentTime / duration) * 100;
-    $('time-control .current-time').text( currentTime );
+    $('#time-control .current-time').text(currentTime);
     $('#time-control input').val(percent);
+    $('#time-control .total-time').text(duration);
   }, 1000);
 }
 
@@ -59,6 +65,6 @@ $('#time-control input').on('input', function (event) {
     if (previousSongIndex < 0) { return; }
 
     const previousSong = album.songs[previousSongIndex];
-    player.playPause(previousSong);
+    helper.playPauseAndUpdate(previousSong);
   });
 }
