@@ -49,11 +49,9 @@ $('#time-control input').on('input', function (event) {
     const currentTime = player.getTime();
     const duration = player.getDuration();
     const percent = (currentTime / duration) * 100;
-<<<<<<< HEAD
+
     $('#time-control .current-time').text( currentTime );
-=======
     $('#time-control .current-time').text(currentTime);
->>>>>>> checkpoint-12.18-assignment
     $('#time-control input').val(percent);
     $('#time-control .total-time').text(duration);
   }, 1000);

@@ -6,5 +6,5 @@
   /* mapping the artist */
   $('.artist').text(album.artist);
   /* mapping the release data */
-   $('#release-info').text(album.releaseInfo);
+  $('#release-info').text(album.releaseInfo);
 }
